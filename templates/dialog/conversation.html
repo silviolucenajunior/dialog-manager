@@ -1,0 +1,19 @@
+<html>
+   <head>
+   </head>
+   <body>
+       <h1>Conversation {{conversation.title}}</h1>
+       {% for dialog in conversation.root_dialogs %}
+          <div>
+              <span>{{dialog.person_of}}</span>
+              <p>{{dialog.text|safe}}</p>
+          </div>
+       {% endfor %}
+       <hr/>
+       <h1>Insert new Dialog Below</h1>
+       <form>
+          <textarea name="text" id="text"></textarea>
+          <input type="submit" value="Send" />
+       </form>
+   </body>
+</html>

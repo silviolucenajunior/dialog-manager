@@ -3,16 +3,16 @@ from django.db import models
 class Dialog(models.Model):
     conversation = models.ForeignKey("Conversation", blank = True, null = True)
     text = models.TextField("Text", blank = True, null = True)
-    person_of = models.ForeignKey("Person", blank = True, null = True)
-    person_to = models.ForeignKey("Person", max_length = 255, blank = True, null = True)
+    person_of = models.ForeignKey("Person", blank = True, null = True, related_name = "person_of")
+    person_to = models.ForeignKey("Person", max_length = 255, blank = True, null = True, related_name = "person_to")
     image = models.ImageField("Portrait", upload_to = "portraits", blank = True, null = True)
     order = models.IntegerField("Order", blank = True, null = True)
 
     def __unicode__(self):
-        return u"%s" % self.person
+        return u"%s" % self.conversation
 
     def __str__(self):
-        return u"%s" % self.person
+        return u"%s" % self.conversation
 
 class Person(models.Model):
     category = models.ForeignKey("Category", blank = True, null = True)
